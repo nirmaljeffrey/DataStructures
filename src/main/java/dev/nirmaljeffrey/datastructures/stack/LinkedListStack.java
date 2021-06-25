@@ -44,7 +44,7 @@ public class LinkedListStack<T> implements Stack<T> {
 
     @Override
     public Iterator<T> iterator() {
-        return new Iterator<T>() {
+        return new Iterator<>() {
             private Node<T> temp = head;
 
             @Override
