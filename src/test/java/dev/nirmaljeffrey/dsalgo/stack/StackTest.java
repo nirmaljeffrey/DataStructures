@@ -1,4 +1,4 @@
-package dev.nirmaljeffrey.datastructures.stack;
+package dev.nirmaljeffrey.dsalgo.stack;
 
 
 import org.junit.After;
