@@ -1,4 +1,4 @@
-package dev.nirmaljeffrey.dsalgo.stack;
+package dev.nirmaljeffrey.dsalgo.datastructures.stack;
 
 public interface Stack<T> extends Iterable<T> {
     int size();

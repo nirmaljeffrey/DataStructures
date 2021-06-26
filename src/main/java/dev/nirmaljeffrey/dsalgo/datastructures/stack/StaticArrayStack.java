@@ -1,4 +1,4 @@
-package dev.nirmaljeffrey.dsalgo.stack;
+package dev.nirmaljeffrey.dsalgo.datastructures.stack;
 
 import org.jetbrains.annotations.NotNull;
 
