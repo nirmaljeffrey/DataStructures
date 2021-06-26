@@ -15,7 +15,7 @@ public class IntStack<T> implements Stack<Integer> {
 
     @Override
     public int size() {
-        return top++;
+        return top + 1;
     }
 
     @Override
@@ -37,7 +37,7 @@ public class IntStack<T> implements Stack<Integer> {
             throw new EmptyStackException();
         }
         Integer data = array[top];
-        top--;
+        --top;
         return data;
     }
 
