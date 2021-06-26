@@ -5,12 +5,12 @@ import org.jetbrains.annotations.NotNull;
 import java.util.EmptyStackException;
 import java.util.Iterator;
 
-public class IntStack<T> implements Stack<Integer> {
+public class StaticArrayStack<T> implements Stack<T> {
 
-    private int[] array;
+    private Object[] array;
     private int top = -1;
-    public IntStack(int size) {
-        this.array = new int[size];
+    public StaticArrayStack(int size) {
+        this.array = new Object[size];
     }
 
     @Override
@@ -24,7 +24,7 @@ public class IntStack<T> implements Stack<Integer> {
     }
 
     @Override
-    public void push(@NotNull Integer data) {
+    public void push(T data) {
         if (top == array.length - 1) {
             throw new StackOverflowError();
         }
@@ -32,25 +32,25 @@ public class IntStack<T> implements Stack<Integer> {
     }
 
     @Override
-    public Integer pop() {
+    public T pop() {
         if (top == -1) {
             throw new EmptyStackException();
         }
-        Integer data = array[top];
+        T data = (T) array[top];
         --top;
         return data;
     }
 
     @Override
-    public Integer peek() {
+    public T peek() {
         if (top == -1) {
             throw new EmptyStackException();
         }
-        return array[top];
+        return (T) array[top];
     }
 
     @Override
-    public Iterator<Integer> iterator() {
+    public @NotNull Iterator<T> iterator() {
         return new Iterator<>() {
             private int temp = top;
             @Override
@@ -59,8 +59,8 @@ public class IntStack<T> implements Stack<Integer> {
             }
 
             @Override
-            public Integer next() {
-                return array[temp--];
+            public T next() {
+                return (T) array[temp--];
             }
         };
     }

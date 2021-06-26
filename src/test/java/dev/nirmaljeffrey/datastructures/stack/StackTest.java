@@ -17,7 +17,7 @@ public class StackTest {
    @Before
     public void setUp() {
        stackList.add(new LinkedListStack<>());
-       stackList.add(new IntStack<>(5));
+       stackList.add(new StaticArrayStack<>(5));
    }
 
    @Test
