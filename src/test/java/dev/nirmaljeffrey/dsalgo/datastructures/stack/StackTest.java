@@ -115,6 +115,20 @@ public class StackTest {
         }
     }
 
+    @Test
+    public void testIteratorMultipleElementInStack() {
+        for (Stack<Integer> stack : stackList) {
+            stack.push(1);
+            stack.push(2);
+            Iterator iterator = stack.iterator();
+            assertTrue(iterator.hasNext());
+            assertEquals(2, iterator.next());
+            assertTrue(iterator.hasNext());
+            assertEquals(1, iterator.next());
+            assertFalse(iterator.hasNext());
+        }
+    }
+
 
     @After
     public void tearDown() {

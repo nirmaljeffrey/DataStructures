@@ -53,15 +53,19 @@ public class LinkedListQueue<T> implements Queue<T> {
     public Iterator<T> iterator() {
         return new Iterator<>() {
             private Node<T> tempHead = head;
-            private Node<T> tempTail = tail;
             @Override
             public boolean hasNext() {
-                return false;
+                return tempHead != null;
             }
 
             @Override
             public T next() {
-                return null;
+                if (tempHead == null) {
+                    throw new NoSuchElementException();
+                }
+                T data = tempHead.data;
+                tempHead = tempHead.next;
+                return data;
             }
         };
     }
