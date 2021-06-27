@@ -25,7 +25,7 @@ public class StaticArrayStack<T> implements Stack<T> {
 
     @Override
     public void push(T data) {
-        if (top == array.length - 1) {
+        if (top == array.length) {
             throw new StackOverflowError();
         }
        array[++top] = data;

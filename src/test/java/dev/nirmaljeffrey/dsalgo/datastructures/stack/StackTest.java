@@ -7,6 +7,7 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.EmptyStackException;
+import java.util.Iterator;
 
 import static org.junit.Assert.*;
 
@@ -93,6 +94,17 @@ public class StackTest {
             assertTrue(stack.isEmpty());
             assertEquals(stack.size(), 0);
         }
+    }
+
+    @Test
+    public void testIterator() {
+       for (Stack<Integer> stack : stackList) {
+//           stack.push(1);
+//           Iterator iterator = stack.iterator();
+//           assertTrue(iterator.hasNext());
+//           assertEquals(1, iterator.next());
+//           assertTrue(iterator.hasNext());
+       }
     }
 
 
