@@ -2,9 +2,9 @@ package dev.nirmaljeffrey.dsalgo.datastructures.stack;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.lang.reflect.Array;
 import java.util.EmptyStackException;
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 public class DynamicArrayStack<T> implements Stack<T> {
     private Object[] array;
@@ -64,6 +64,9 @@ public class DynamicArrayStack<T> implements Stack<T> {
 
             @Override
             public T next() {
+                if (temp == -1) {
+                    throw new NoSuchElementException();
+                }
                 return (T) array[temp--];
             }
         };

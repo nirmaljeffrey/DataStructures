@@ -5,9 +5,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.EmptyStackException;
-import java.util.Iterator;
+import java.util.*;
 
 import static org.junit.Assert.*;
 
@@ -19,6 +17,7 @@ public class StackTest {
     public void setUp() {
        stackList.add(new LinkedListStack<>());
        stackList.add(new StaticArrayStack<>(5));
+       stackList.add(new DynamicArrayStack<>());
    }
 
    @Test
@@ -96,15 +95,24 @@ public class StackTest {
         }
     }
 
-    @Test
-    public void testIterator() {
+    @Test(expected = NoSuchElementException.class)
+    public void testIteratorOnEmptyStack() {
        for (Stack<Integer> stack : stackList) {
-//           stack.push(1);
-//           Iterator iterator = stack.iterator();
-//           assertTrue(iterator.hasNext());
-//           assertEquals(1, iterator.next());
-//           assertTrue(iterator.hasNext());
+           Iterator iterator = stack.iterator();
+           assertFalse(iterator.hasNext());
+           iterator.next();
        }
+    }
+
+    @Test
+    public void testIteratorOneElementInStack() {
+        for (Stack<Integer> stack : stackList) {
+            stack.push(1);
+            Iterator iterator = stack.iterator();
+            assertTrue(iterator.hasNext());
+            assertEquals(1, iterator.next());
+            assertFalse(iterator.hasNext());
+        }
     }
 
 

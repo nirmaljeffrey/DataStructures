@@ -4,6 +4,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.EmptyStackException;
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 public class StaticArrayStack<T> implements Stack<T> {
 
@@ -60,6 +61,9 @@ public class StaticArrayStack<T> implements Stack<T> {
 
             @Override
             public T next() {
+                if (temp == -1) {
+                    throw new NoSuchElementException();
+                }
                 return (T) array[temp--];
             }
         };

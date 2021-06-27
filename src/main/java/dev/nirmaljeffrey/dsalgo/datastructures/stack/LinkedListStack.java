@@ -3,6 +3,7 @@ package dev.nirmaljeffrey.dsalgo.datastructures.stack;
 
 import java.util.EmptyStackException;
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 public class LinkedListStack<T> implements Stack<T> {
     private Node<T> head = null;
@@ -54,6 +55,9 @@ public class LinkedListStack<T> implements Stack<T> {
 
             @Override
             public T next() {
+                if (temp == null) {
+                    throw new NoSuchElementException();
+                }
                 T data = temp.data;
                 temp = temp.next;
                 return data;
