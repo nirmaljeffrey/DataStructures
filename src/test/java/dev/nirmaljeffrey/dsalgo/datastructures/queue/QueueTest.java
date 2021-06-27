@@ -16,6 +16,7 @@ public class QueueTest {
     @Before
     public void setUp() {
         queueList.add(new LinkedListQueue<>());
+        queueList.add(new StaticArrayQueue<>(10));
     }
 
 
