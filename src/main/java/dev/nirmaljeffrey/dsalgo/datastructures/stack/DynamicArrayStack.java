@@ -8,12 +8,10 @@ import java.util.NoSuchElementException;
 
 public class DynamicArrayStack<T> implements Stack<T> {
     private Object[] array;
-    private int capacity;
     private int length = -1;
 
     public DynamicArrayStack() {
-        capacity = 5;
-        array = new Object[capacity];
+        array = new Object[5];
     }
 
     @Override
@@ -73,7 +71,7 @@ public class DynamicArrayStack<T> implements Stack<T> {
     }
 
     private void increaseArrayCapacity() {
-        Object[] newArray = new Object[capacity * 2];
+        Object[] newArray = new Object[array.length * 2];
         for (int i = 0; i < array.length; i++) {
             newArray[i] = array[i];
         }
