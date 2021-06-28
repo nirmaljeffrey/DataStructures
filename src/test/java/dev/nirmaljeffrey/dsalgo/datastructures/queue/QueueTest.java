@@ -17,6 +17,7 @@ public class QueueTest {
     public void setUp() {
         queueList.add(new LinkedListQueue<>());
         queueList.add(new StaticArrayQueue<>(10));
+        queueList.add(new DynamicArrayQueue<>());
     }
 
 
