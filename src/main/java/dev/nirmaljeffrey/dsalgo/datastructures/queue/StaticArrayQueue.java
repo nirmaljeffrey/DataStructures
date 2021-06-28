@@ -31,7 +31,7 @@ public class StaticArrayQueue<T> implements Queue<T> {
     public T dequeue() {
         T data;
         if (isEmpty()) {
-            throw new NoSuchElementException();
+            throw new RuntimeException("Queue is Empty");
         } else if (head == tail) {
             data = (T) array[head];
             tail = -1;
@@ -47,7 +47,7 @@ public class StaticArrayQueue<T> implements Queue<T> {
     @Override
     public T peek() {
         if (isEmpty()) {
-            throw new NoSuchElementException();
+            throw new RuntimeException("Queue is Empty");
         }
         return (T) array[head];
     }

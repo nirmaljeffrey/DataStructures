@@ -18,6 +18,7 @@ public class QueueTest {
         queueList.add(new LinkedListQueue<>());
         queueList.add(new StaticArrayQueue<>(10));
         queueList.add(new DynamicArrayQueue<>());
+        queueList.add(new CircularArrayQueue<>(10));
     }
 
 
@@ -28,14 +29,14 @@ public class QueueTest {
         }
     }
 
-    @Test(expected = NoSuchElementException.class)
+    @Test(expected = RuntimeException.class)
     public void testDequeueOnEmptyQueue() {
         for (Queue<Integer> queue: queueList) {
               queue.dequeue();
         }
     }
 
-    @Test(expected = NoSuchElementException.class)
+    @Test(expected = RuntimeException.class)
     public void testPeekOnEmptyQueue() {
         for (Queue<Integer> queue: queueList) {
             queue.dequeue();

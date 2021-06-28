@@ -24,7 +24,7 @@ public class LinkedListQueue<T> implements Queue<T> {
     @Override
     public T dequeue() {
         if (head == null) {
-            throw new NoSuchElementException();
+            throw new RuntimeException("Queue is Empty");
         }
         T data = head.data;
         Node<T> temp = head.next;
@@ -38,7 +38,7 @@ public class LinkedListQueue<T> implements Queue<T> {
     @Override
     public T peek() {
         if (head == null) {
-            throw new NoSuchElementException();
+            throw new RuntimeException("Queue is Empty");
         }
         return head.data;
     }

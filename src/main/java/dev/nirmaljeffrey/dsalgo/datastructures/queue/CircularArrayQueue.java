@@ -5,25 +5,26 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class DynamicArrayQueue<T> implements Queue<T> {
+public class CircularArrayQueue<T> implements Queue<T> {
     private Object[] array;
     private int head = -1;
     private int tail = -1;
-    public DynamicArrayQueue() {
-        array = new Object[16];
+
+    public CircularArrayQueue(int size) {
+        array = new Object[size];
     }
 
     @Override
     public void enqueue(T data) {
-        if (tail == array.length - 1) {
-            increaseCapacity();
+        if (isFull()) {
+            throw  new RuntimeException("Queue is Full");
         }
-        if (isEmpty()) {
-            head++;
-        }
-
-        array[++tail] = data;
-
+       if (isEmpty()) {
+          head = tail = 0;
+       } else {
+           tail = (tail + 1) % array.length;
+       }
+       array[tail] = data;
     }
 
     @Override
@@ -32,11 +33,12 @@ public class DynamicArrayQueue<T> implements Queue<T> {
         if (isEmpty()) {
             throw new RuntimeException("Queue is Empty");
         } else if (tail == head) {
-           data = (T) array[head];
-           head = -1;
-           tail = -1;
+            data = (T) array[head];
+            head = -1;
+            tail = -1;
         } else {
-            data = (T) array[head++];
+            data = (T) array[head];
+            head = (head + 1) % array.length;
         }
         return data;
     }
@@ -51,18 +53,21 @@ public class DynamicArrayQueue<T> implements Queue<T> {
 
     @Override
     public boolean isEmpty() {
-        return head == -1 & tail == -1;
+        return tail == -1 && head == -1;
     }
 
+    private boolean isFull() {
+        return (tail + 1) % array.length == head;
+    }
     @NotNull
     @Override
     public Iterator<T> iterator() {
-        return new Iterator<T>() {
+        return new Iterator<>() {
             private int tempHead = head;
             private int tempTail = tail;
             @Override
             public boolean hasNext() {
-                return tempTail != -1 && tempHead != -1;
+                return tempHead != -1 && tempTail != -1;
             }
 
             @Override
@@ -70,23 +75,15 @@ public class DynamicArrayQueue<T> implements Queue<T> {
                 T data;
                 if (tempTail == -1 && tempHead == -1) {
                     throw new NoSuchElementException();
-                } else if (tempHead == tempTail) {
+                } else if (tempTail == tempHead) {
                     data = (T) array[tempHead];
                     tempTail = -1;
-                    tempHead = -1;
+                    tempTail = -1;
                 } else {
                     data = (T) array[tempHead++];
                 }
                 return data;
             }
         };
-    }
-
-    private void increaseCapacity() {
-        Object[] newArray = new Object[array.length * 2];
-        for (int i = 0; i < array.length; i++) {
-            newArray[i] = array[i];
-        }
-        array = newArray;
     }
 }
