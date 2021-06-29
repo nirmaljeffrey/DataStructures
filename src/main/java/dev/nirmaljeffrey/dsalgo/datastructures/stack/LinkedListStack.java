@@ -1,6 +1,8 @@
 package dev.nirmaljeffrey.dsalgo.datastructures.stack;
 
 
+import dev.nirmaljeffrey.dsalgo.datastructures.list.Node;
+
 import java.util.EmptyStackException;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
@@ -29,8 +31,8 @@ public class LinkedListStack<T> implements Stack<T> {
         if (head == null) {
             throw new EmptyStackException();
         }
-        T data = head.data;
-        head = head.next;
+        T data = head.getData();
+        head = head.getNext();
         size--;
         return data;
     }
@@ -40,7 +42,7 @@ public class LinkedListStack<T> implements Stack<T> {
         if (head == null) {
             throw new EmptyStackException();
         }
-        return head.data;
+        return head.getData();
     }
 
     @Override
@@ -58,36 +60,10 @@ public class LinkedListStack<T> implements Stack<T> {
                 if (temp == null) {
                     throw new NoSuchElementException();
                 }
-                T data = temp.data;
-                temp = temp.next;
+                T data = temp.getData();
+                temp = temp.getNext();
                 return data;
             }
         };
-    }
-
-    private static class Node<T> {
-        private T data;
-        private Node<T> next;
-
-        public Node(T data, Node<T> next) {
-            this.data = data;
-            this.next = next;
-        }
-
-        public T getData() {
-            return data;
-        }
-
-        public void setData(T data) {
-            this.data = data;
-        }
-
-        public Node<T> getNext() {
-            return next;
-        }
-
-        public void setNext(Node<T> next) {
-            this.next = next;
-        }
     }
 }

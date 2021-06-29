@@ -1,5 +1,6 @@
 package dev.nirmaljeffrey.dsalgo.datastructures.queue;
 
+import dev.nirmaljeffrey.dsalgo.datastructures.list.Node;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Iterator;
@@ -16,7 +17,7 @@ public class LinkedListQueue<T> implements Queue<T> {
             head = temp;
             tail = temp;
         } else {
-             tail.next = temp;
+             tail.setNext(temp);
              tail = temp;
         }
     }
@@ -26,8 +27,8 @@ public class LinkedListQueue<T> implements Queue<T> {
         if (head == null) {
             throw new RuntimeException("Queue is Empty");
         }
-        T data = head.data;
-        Node<T> temp = head.next;
+        T data = head.getData();
+        Node<T> temp = head.getNext();
         if (head == tail) {
             tail = temp;
         }
@@ -40,7 +41,7 @@ public class LinkedListQueue<T> implements Queue<T> {
         if (head == null) {
             throw new RuntimeException("Queue is Empty");
         }
-        return head.data;
+        return head.getData();
     }
 
     @Override
@@ -63,36 +64,10 @@ public class LinkedListQueue<T> implements Queue<T> {
                 if (tempHead == null) {
                     throw new NoSuchElementException();
                 }
-                T data = tempHead.data;
-                tempHead = tempHead.next;
+                T data = tempHead.getData();
+                tempHead = tempHead.getNext();
                 return data;
             }
         };
-    }
-
-    private static class Node<T> {
-        private T data;
-        private Node<T> next;
-
-        public Node(T data, Node<T> next) {
-            this.data = data;
-            this.next = next;
-        }
-
-        public T getData() {
-            return data;
-        }
-
-        public void setData(T data) {
-            this.data = data;
-        }
-
-        public Node<T> getNext() {
-            return next;
-        }
-
-        public void setNext(Node<T> next) {
-            this.next = next;
-        }
     }
 }
