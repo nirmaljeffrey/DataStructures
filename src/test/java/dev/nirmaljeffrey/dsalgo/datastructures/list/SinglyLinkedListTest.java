@@ -5,211 +5,247 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 
 import static org.junit.Assert.*;
 
 public class SinglyLinkedListTest {
-    private SinglyLinkedList<Integer> singlyLinkedList;
+    private ArrayList<List<Integer>> lists = new ArrayList<>();
 
     @Before
     public void setUp() {
-        singlyLinkedList = new SinglyLinkedList<>();
+        lists.add(new SinglyLinkedList<>());
     }
 
     @Test
     public void testEmptyList() {
-        assertTrue(singlyLinkedList.isEmpty());
-        assertEquals(0, singlyLinkedList.size());
+        for (List<Integer> list : lists) {
+            assertTrue(list.isEmpty());
+            assertEquals(0, list.size());
+        }
     }
 
     @Test(expected = RuntimeException.class)
     public void testRemoveFirstOnEmptyList() {
-        singlyLinkedList.removeFirst();
+        for (List<Integer> list : lists) {
+            list.removeFirst();
+        }
     }
 
     @Test(expected = RuntimeException.class)
     public void testRemoveLastOnEmptyList() {
-        singlyLinkedList.removeLast();
+        for (List<Integer> list : lists) {
+            list.removeLast();
+        }
     }
 
     @Test(expected = RuntimeException.class)
     public void testPeekFirstOnEmptyList() {
-        singlyLinkedList.peekFirst();
+        for (List<Integer> list : lists) {
+            list.peekFirst();
+        }
     }
 
     @Test(expected = RuntimeException.class)
     public void testPeekLastOnEmptyList() {
-        singlyLinkedList.peekLast();
+        for (List<Integer> list : lists) {
+            list.peekLast();
+        }
     }
 
     @Test
     public void testAddFirst() {
-        assertTrue(singlyLinkedList.isEmpty());
-        singlyLinkedList.addFirst(1);
-        assertFalse(singlyLinkedList.isEmpty());
-        assertEquals(1, singlyLinkedList.size());
-        singlyLinkedList.addFirst(2);
-        assertFalse(singlyLinkedList.isEmpty());
-        assertEquals(2, singlyLinkedList.size());
+        for (List<Integer> list : lists) {
+            assertTrue(list.isEmpty());
+            list.addFirst(1);
+            assertFalse(list.isEmpty());
+            assertEquals(1, list.size());
+            list.addFirst(2);
+            assertFalse(list.isEmpty());
+            assertEquals(2, list.size());
+        }
     }
 
     @Test
     public void testAddLast() {
-        assertTrue(singlyLinkedList.isEmpty());
-        singlyLinkedList.addLast(1);
-        assertFalse(singlyLinkedList.isEmpty());
-        assertEquals(1, singlyLinkedList.size());
-        singlyLinkedList.addLast(2);
-        assertFalse(singlyLinkedList.isEmpty());
-        assertEquals(2, singlyLinkedList.size());
+        for (List<Integer> list : lists) {
+            assertTrue(list.isEmpty());
+            list.addLast(1);
+            assertFalse(list.isEmpty());
+            assertEquals(1, list.size());
+            list.addLast(2);
+            assertFalse(list.isEmpty());
+            assertEquals(2, list.size());
+        }
     }
 
     @Test
     public void testAddAt() {
-        assertTrue(singlyLinkedList.isEmpty());
-        singlyLinkedList.addAt(0,5);
-        assertFalse(singlyLinkedList.isEmpty());
-        assertEquals(1, singlyLinkedList.size());
-        singlyLinkedList.addAt(1,10);
-        assertFalse(singlyLinkedList.isEmpty());
-        assertEquals(2, singlyLinkedList.size());
-        singlyLinkedList.addAt(2,15);
-        assertFalse(singlyLinkedList.isEmpty());
-        assertEquals(3, singlyLinkedList.size());
+        for (List<Integer> list : lists) {
+
+            assertTrue(list.isEmpty());
+            list.addAt(0, 5);
+            assertFalse(list.isEmpty());
+            assertEquals(1, list.size());
+            list.addAt(1, 10);
+            assertFalse(list.isEmpty());
+            assertEquals(2, list.size());
+            list.addAt(2, 15);
+            assertFalse(list.isEmpty());
+            assertEquals(3, list.size());
+        }
     }
 
     @Test
     public void testRemoveFirst() {
-        assertTrue(singlyLinkedList.isEmpty());
-        singlyLinkedList.addFirst(1);
-        assertFalse(singlyLinkedList.isEmpty());
-        assertEquals(1, singlyLinkedList.size());
-        assertEquals(1, (int) singlyLinkedList.removeFirst());
-        assertTrue(singlyLinkedList.isEmpty());
+        for (List<Integer> list : lists) {
+            assertTrue(list.isEmpty());
+            list.addFirst(1);
+            assertFalse(list.isEmpty());
+            assertEquals(1, list.size());
+            assertEquals(1, (int) list.removeFirst());
+            assertTrue(list.isEmpty());
+        }
     }
 
     @Test
     public void testRemoveLast() {
-        assertTrue(singlyLinkedList.isEmpty());
-        singlyLinkedList.addFirst(1);
-        assertFalse(singlyLinkedList.isEmpty());
-        assertEquals(1, singlyLinkedList.size());
-        assertEquals(1, (int) singlyLinkedList.removeLast());
-        assertTrue(singlyLinkedList.isEmpty());
-        singlyLinkedList.addFirst(2);
-        singlyLinkedList.addFirst(3);
-        assertFalse(singlyLinkedList.isEmpty());
-        assertEquals(2, (int) singlyLinkedList.removeLast());
-        assertEquals(1, singlyLinkedList.size());
+        for (List<Integer> list : lists) {
+            assertTrue(list.isEmpty());
+            list.addFirst(1);
+            assertFalse(list.isEmpty());
+            assertEquals(1, list.size());
+            assertEquals(1, (int) list.removeLast());
+            assertTrue(list.isEmpty());
+            list.addFirst(2);
+            list.addFirst(3);
+            assertFalse(list.isEmpty());
+            assertEquals(2, (int) list.removeLast());
+            assertEquals(1, list.size());
+        }
     }
 
     @Test
     public void testPeeking() {
-        assertTrue(singlyLinkedList.isEmpty());
-        // 7
-        singlyLinkedList.add(7);
-        assertFalse(singlyLinkedList.isEmpty());
-        assertEquals(7, (int) singlyLinkedList.peekFirst());
-        assertEquals(7, (int) singlyLinkedList.peekLast());
-        // 7 - 8
-        singlyLinkedList.add(8);
-        assertFalse(singlyLinkedList.isEmpty());
-        assertEquals(7, (int) singlyLinkedList.peekFirst());
-        assertEquals(8, (int) singlyLinkedList.peekLast());
-        // 7 - 8 - 9
-        singlyLinkedList.add(9);
-        assertFalse(singlyLinkedList.isEmpty());
-        assertEquals(7, (int) singlyLinkedList.peekFirst());
-        assertEquals(9, (int) singlyLinkedList.peekLast());
-        // 7 - 8
-        singlyLinkedList.removeLast();
-        assertFalse(singlyLinkedList.isEmpty());
-        assertEquals(7, (int) singlyLinkedList.peekFirst());
-        assertEquals(8, (int) singlyLinkedList.peekLast());
-        // 8
-        singlyLinkedList.removeFirst();
-        assertFalse(singlyLinkedList.isEmpty());
-        assertEquals(8, (int) singlyLinkedList.peekFirst());
-        assertEquals(8, (int) singlyLinkedList.peekLast());
+        for (List<Integer> list : lists) {
+            assertTrue(list.isEmpty());
+            // 7
+            list.add(7);
+            assertFalse(list.isEmpty());
+            assertEquals(7, (int) list.peekFirst());
+            assertEquals(7, (int) list.peekLast());
+            // 7 - 8
+            list.add(8);
+            assertFalse(list.isEmpty());
+            assertEquals(7, (int) list.peekFirst());
+            assertEquals(8, (int) list.peekLast());
+            // 7 - 8 - 9
+            list.add(9);
+            assertFalse(list.isEmpty());
+            assertEquals(7, (int) list.peekFirst());
+            assertEquals(9, (int) list.peekLast());
+            // 7 - 8
+            list.removeLast();
+            assertFalse(list.isEmpty());
+            assertEquals(7, (int) list.peekFirst());
+            assertEquals(8, (int) list.peekLast());
+            // 8
+            list.removeFirst();
+            assertFalse(list.isEmpty());
+            assertEquals(8, (int) list.peekFirst());
+            assertEquals(8, (int) list.peekLast());
+        }
     }
 
     @Test
     public void testRemoving() {
-        singlyLinkedList.add(1);
-        singlyLinkedList.add(2);
-        singlyLinkedList.add(3);
-        singlyLinkedList.add(4);
-        singlyLinkedList.add(5);
-        singlyLinkedList.removeLast();
-        singlyLinkedList.removeFirst();
-        singlyLinkedList.removeLast();
-        singlyLinkedList.removeFirst();
-        singlyLinkedList.removeLast();
-        assertEquals(0, singlyLinkedList.size());
-        assertTrue(singlyLinkedList.isEmpty());
+        for (List<Integer> list : lists) {
+            list.add(1);
+            list.add(2);
+            list.add(3);
+            list.add(4);
+            list.add(5);
+            list.removeLast();
+            list.removeFirst();
+            list.removeLast();
+            list.removeFirst();
+            list.removeLast();
+            assertEquals(0, list.size());
+            assertTrue(list.isEmpty());
+        }
     }
 
     @Test
     public void testRemoveAt() {
-        singlyLinkedList.add(1);
-        singlyLinkedList.add(2);
-        singlyLinkedList.add(3);
-        singlyLinkedList.add(4);
-        singlyLinkedList.add(5);
-        assertEquals(2, (int) singlyLinkedList.removeAt(1));
-        assertEquals(4, singlyLinkedList.size());
-        assertEquals(3, (int) singlyLinkedList.removeAt(1));
-        assertEquals(3, singlyLinkedList.size());
-        assertEquals(1, (int) singlyLinkedList.removeAt(0));
-        assertEquals(2, singlyLinkedList.size());
+        for (List<Integer> list : lists) {
+            list.add(1);
+            list.add(2);
+            list.add(3);
+            list.add(4);
+            list.add(5);
+            assertEquals(2, (int) list.removeAt(1));
+            assertEquals(4, list.size());
+            assertEquals(3, (int) list.removeAt(1));
+            assertEquals(3, list.size());
+            assertEquals(1, (int) list.removeAt(0));
+            assertEquals(2, list.size());
+        }
     }
 
 
     @Test
     public void testContains(){
-        singlyLinkedList.add(1);
-        assertTrue(singlyLinkedList.contains(1));
-        singlyLinkedList.removeFirst();
-        assertFalse(singlyLinkedList.contains(1));
+        for (List<Integer> list : lists) {
+            list.add(1);
+            assertTrue(list.contains(1));
+            list.removeFirst();
+            assertFalse(list.contains(1));
+        }
     }
 
     @Test
-    public void testIndexOf(){
-        singlyLinkedList.add(1);
-        singlyLinkedList.add(2);
-        singlyLinkedList.add(3);
-        singlyLinkedList.add(4);
-        singlyLinkedList.add(5);
-        assertEquals(0,singlyLinkedList.indexOf(1));
-        assertEquals(1, singlyLinkedList.indexOf(2));
-        singlyLinkedList.removeFirst();
-        assertEquals(0, singlyLinkedList.indexOf(2));
+    public void testIndexOf() {
+        for (List<Integer> list : lists) {
+            list.add(1);
+            list.add(2);
+            list.add(3);
+            list.add(4);
+            list.add(5);
+            assertEquals(0, list.indexOf(1));
+            assertEquals(1, list.indexOf(2));
+            list.removeFirst();
+            assertEquals(0, list.indexOf(2));
+        }
     }
 
 
     @Test
     public void testIteratorOneElementInQueue() {
-            singlyLinkedList.add(1);
-            Iterator iterator = singlyLinkedList.iterator();
+        for (List<Integer> list : lists) {
+            list.add(1);
+            Iterator iterator = list.iterator();
             assertTrue(iterator.hasNext());
             assertEquals(1, iterator.next());
             assertFalse(iterator.hasNext());
+        }
     }
     @Test
     public void testIteratorMultipleElementInQueue() {
-            singlyLinkedList.add(1);
-            singlyLinkedList.add(2);
-            Iterator iterator = singlyLinkedList.iterator();
+        for (List<Integer> list : lists) {
+            list.add(1);
+            list.add(2);
+            Iterator iterator = list.iterator();
             assertTrue(iterator.hasNext());
             assertEquals(1, iterator.next());
             assertTrue(iterator.hasNext());
             assertEquals(2, iterator.next());
             assertFalse(iterator.hasNext());
+        }
     }
 
     @After
     public void tearDown() {
-        singlyLinkedList = null;
+        lists = null;
     }
 }
