@@ -8,7 +8,7 @@ void addFirst(T data);
 void addAt(int index, T data);
 T removeFirst();
 T removeLast();
-T removeAt(Node<T> prev, Node<T> next);
+T removeAt(int index);
 void clear();
 int indexOf(T element);
 boolean contains(T element);
