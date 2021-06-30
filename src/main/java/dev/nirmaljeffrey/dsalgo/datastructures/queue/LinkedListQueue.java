@@ -1,6 +1,5 @@
 package dev.nirmaljeffrey.dsalgo.datastructures.queue;
 
-import dev.nirmaljeffrey.dsalgo.datastructures.list.Node;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Iterator;
@@ -69,5 +68,31 @@ public class LinkedListQueue<T> implements Queue<T> {
                 return data;
             }
         };
+    }
+
+    private static class Node<T> {
+        private T data;
+        private Node<T> next;
+
+        public Node(T data, Node<T> next) {
+            this.data = data;
+            this.next = next;
+        }
+
+        public T getData() {
+            return data;
+        }
+
+        public void setData(T data) {
+            this.data = data;
+        }
+
+        public Node<T> getNext() {
+            return next;
+        }
+
+        public void setNext(Node<T> next) {
+            this.next = next;
+        }
     }
 }

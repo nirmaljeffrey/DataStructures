@@ -81,6 +81,9 @@ public class SinglyLinkedList<T> implements List<T> {
             head = temp;
         }
         size--;
+        if (isEmpty()) {
+            head = tail = null;
+        }
         return data;
     }
 
@@ -95,16 +98,21 @@ public class SinglyLinkedList<T> implements List<T> {
             tail.setData(null);
             tail = head = null;
         } else {
-            Node<T> temp = head;
-            for (int i = 0; i < size - 1; i++) {
-                temp = temp.getNext();
+            Node<T> firstIterator = head;
+            Node<T> secondIterator = head.getNext();
+            while (secondIterator != tail) {
+                firstIterator = firstIterator.getNext();
+                secondIterator = secondIterator.getNext();
             }
-            temp.setNext(null);
-            tail.setData(null);
+            tail = firstIterator;
             tail.setNext(null);
-            tail = temp;
+            secondIterator.setNext(null);
+            secondIterator.setData(null);
         }
         size--;
+        if (isEmpty()) {
+            head = tail = null;
+        }
         return data;
     }
 
@@ -130,6 +138,9 @@ public class SinglyLinkedList<T> implements List<T> {
         secondIterator.setNext(null);
         secondIterator.setData(null);
         size--;
+        if (isEmpty()) {
+            head = tail = null;
+        }
         return data;
     }
 
@@ -210,6 +221,7 @@ public class SinglyLinkedList<T> implements List<T> {
     public Iterator<T> iterator() {
         return new Iterator<>() {
             private Node<T> tempHead = head;
+
             @Override
             public boolean hasNext() {
                 return tempHead != null;
@@ -222,5 +234,30 @@ public class SinglyLinkedList<T> implements List<T> {
                 return data;
             }
         };
+    }
+    private static class Node<T> {
+        private T data;
+        private Node<T> next;
+
+        public Node(T data, Node<T> next) {
+            this.data = data;
+            this.next = next;
+        }
+
+        public T getData() {
+            return data;
+        }
+
+        public void setData(T data) {
+            this.data = data;
+        }
+
+        public Node<T> getNext() {
+            return next;
+        }
+
+        public void setNext(Node<T> next) {
+            this.next = next;
+        }
     }
 }
