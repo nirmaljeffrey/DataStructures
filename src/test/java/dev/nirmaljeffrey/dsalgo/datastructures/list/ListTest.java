@@ -10,7 +10,7 @@ import java.util.Iterator;
 
 import static org.junit.Assert.*;
 
-public class SinglyLinkedListTest {
+public class ListTest {
     private ArrayList<List<Integer>> lists = new ArrayList<>();
 
     @Before
@@ -216,6 +216,30 @@ public class SinglyLinkedListTest {
             assertEquals(1, list.indexOf(2));
             list.removeFirst();
             assertEquals(0, list.indexOf(2));
+        }
+    }
+
+    @Test
+    public void testClear() {
+        for (List<Integer> list : lists) {
+            list.add(1);
+            list.add(2);
+            list.add(3);
+            list.add(4);
+            list.add(5);
+            assertEquals(5, list.size());
+            assertFalse(list.isEmpty());
+            list.clear();
+            assertEquals(0, list.size());
+            assertTrue(list.isEmpty());
+            list.add(6);
+            list.add(7);
+            list.add(8);
+            assertEquals(3, list.size());
+            assertFalse(list.isEmpty());
+            list.clear();
+            assertEquals(0, list.size());
+            assertTrue(list.isEmpty());
         }
     }
 
