@@ -118,13 +118,13 @@ public class SinglyLinkedList<T> implements List<T> {
 
     @Override
     public T removeAt(int index) {
-        if (index < 0 || index > size) {
+        if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException();
         }
         if (index == 0) {
            return removeFirst();
         }
-        if (index == size) {
+        if (index == size - 1) {
             return removeLast();
         }
         Node<T> firstIterator = head;

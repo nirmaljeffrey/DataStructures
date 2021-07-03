@@ -16,6 +16,7 @@ public class ListTest {
     @Before
     public void setUp() {
         lists.add(new SinglyLinkedList<>());
+        lists.add(new DoublyLinkedList<>());
     }
 
     @Test
