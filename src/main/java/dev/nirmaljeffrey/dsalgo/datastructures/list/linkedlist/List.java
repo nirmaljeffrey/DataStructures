@@ -1,4 +1,4 @@
-package dev.nirmaljeffrey.dsalgo.datastructures.list;
+package dev.nirmaljeffrey.dsalgo.datastructures.list.linkedlist;
 
 public interface List<T> extends Iterable<T> {
 

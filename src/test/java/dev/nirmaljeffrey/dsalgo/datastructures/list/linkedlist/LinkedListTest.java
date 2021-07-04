@@ -1,4 +1,4 @@
-package dev.nirmaljeffrey.dsalgo.datastructures.list;
+package dev.nirmaljeffrey.dsalgo.datastructures.list.linkedlist;
 
 
 import org.junit.After;
@@ -10,7 +10,7 @@ import java.util.Iterator;
 
 import static org.junit.Assert.*;
 
-public class ListTest {
+public class LinkedListTest {
     private ArrayList<List<Integer>> lists = new ArrayList<>();
 
     @Before

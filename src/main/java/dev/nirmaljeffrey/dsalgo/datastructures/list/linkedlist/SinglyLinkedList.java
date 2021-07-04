@@ -1,4 +1,4 @@
-package dev.nirmaljeffrey.dsalgo.datastructures.list;
+package dev.nirmaljeffrey.dsalgo.datastructures.list.linkedlist;
 
 
 import org.jetbrains.annotations.NotNull;
