@@ -1,6 +1,7 @@
 package dev.nirmaljeffrey.dsalgo.datastructures.tree;
 
 import dev.nirmaljeffrey.dsalgo.algorithms.treetraversals.InOrderTraversal;
+import dev.nirmaljeffrey.dsalgo.algorithms.treetraversals.LevelOrderTraversal;
 import dev.nirmaljeffrey.dsalgo.algorithms.treetraversals.PostOrderTraversal;
 import dev.nirmaljeffrey.dsalgo.algorithms.treetraversals.PreOrderTraversal;
 import dev.nirmaljeffrey.dsalgo.common.BinaryTreeNode;
@@ -125,7 +126,7 @@ public class BinarySearchTree<T extends Comparable<T>> {
 
     private int height(BinaryTreeNode<T> node) {
         if (node == null) {
-            return 0;
+            return -1;
         }
         int leftHeight = height(node.left);
         int rightHeight = height(node.right);
@@ -157,19 +158,19 @@ public class BinarySearchTree<T extends Comparable<T>> {
         public void traverseIteratively(ArrayList<T> arrayList,TreeTraversalOrder order) {
             switch (order) {
                 case IN_ORDER:{
-                     InOrderTraversal.iterativeTraversal(arrayList,rootNode);
+                     InOrderTraversal.iterativeTraversal(arrayList, rootNode);
                      break;
                 }
                 case PRE_ORDER: {
-                    PreOrderTraversal.iterativeTraversal(arrayList,rootNode);
+                    PreOrderTraversal.iterativeTraversal(arrayList, rootNode);
                     break;
                 }
                 case POST_ORDER: {
-                    PostOrderTraversal.iterativeTraversal(arrayList,rootNode);
+                    PostOrderTraversal.iterativeTraversal(arrayList, rootNode);
                     break;
                 }
                 case LEVEL_ORDER: {
-                    //TODO
+                    LevelOrderTraversal.iterativeTraversal(arrayList, rootNode);
                     break;
                 }
             }
@@ -178,19 +179,19 @@ public class BinarySearchTree<T extends Comparable<T>> {
         public void traverseRecursively(ArrayList<T> arrayList,TreeTraversalOrder order) {
             switch (order) {
                 case IN_ORDER:{
-                    InOrderTraversal.recursiveTraversal(arrayList,rootNode);
+                    InOrderTraversal.recursiveTraversal(arrayList, rootNode);
                     break;
                 }
                 case PRE_ORDER: {
-                    PreOrderTraversal.recursiveTraversal(arrayList,rootNode);
+                    PreOrderTraversal.recursiveTraversal(arrayList, rootNode);
                     break;
                 }
                 case POST_ORDER: {
-                    PostOrderTraversal.recursiveTraversal(arrayList,rootNode);
+                    PostOrderTraversal.recursiveTraversal(arrayList, rootNode);
                     break;
                 }
                 case LEVEL_ORDER: {
-                    //TODO
+                    LevelOrderTraversal.recursiveTraversal(arrayList, rootNode);
                     break;
                 }
             }
