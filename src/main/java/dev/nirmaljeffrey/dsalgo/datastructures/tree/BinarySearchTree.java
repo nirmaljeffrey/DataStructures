@@ -38,7 +38,7 @@ public class BinarySearchTree<T extends Comparable<T>> {
         if (root == null) {
             root = new BinaryTreeNode<>(element, null, null);
         } else {
-            int comparatorValue = root.data.compareTo(element);
+            int comparatorValue = element.compareTo(root.data);
             if (comparatorValue < 0) {
                 root.left = addNode(root.left, element);
             } else if (comparatorValue > 0) {
@@ -110,7 +110,7 @@ public class BinarySearchTree<T extends Comparable<T>> {
         if (node == null) {
             return false;
         }
-        int comparedValue = node.data.compareTo(element);
+        int comparedValue = element.compareTo(node.data);
         if (comparedValue < 0) {
             return contains(node.left, element);
         } else if (comparedValue > 0) {
