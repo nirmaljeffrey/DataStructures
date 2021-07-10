@@ -114,13 +114,13 @@ private BinarySearchTree<Integer> binarySearchTree;
     }
 
     @Test(expected = NoSuchElementException.class)
-    public void testIteratorHasNextOnBinarySearchTree() {
+    public void testIteratorHasNextOnEmptyBinarySearchTree() {
         Iterator<Integer> iterator = binarySearchTree.iterator(TreeTraversalOrder.IN_ORDER, true);
         iterator.hasNext();
     }
 
     @Test(expected = NoSuchElementException.class)
-    public void testIteratorNextOnBinarySearchTree() {
+    public void testIteratorNextOnEmptyBinarySearchTree() {
         Iterator<Integer> iterator = binarySearchTree.iterator(TreeTraversalOrder.IN_ORDER, true);
         iterator.next();
     }
