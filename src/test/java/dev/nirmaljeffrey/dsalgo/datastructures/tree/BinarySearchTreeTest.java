@@ -4,6 +4,9 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+
 import static org.junit.Assert.*;
 
 public class BinarySearchTreeTest {
@@ -110,9 +113,147 @@ private BinarySearchTree<Integer> binarySearchTree;
         assertEquals(0, binarySearchTree.size());
     }
 
+    @Test(expected = NoSuchElementException.class)
+    public void testIteratorHasNextOnBinarySearchTree() {
+        Iterator<Integer> iterator = binarySearchTree.iterator(TreeTraversalOrder.IN_ORDER, true);
+        iterator.hasNext();
+    }
+
+    @Test(expected = NoSuchElementException.class)
+    public void testIteratorNextOnBinarySearchTree() {
+        Iterator<Integer> iterator = binarySearchTree.iterator(TreeTraversalOrder.IN_ORDER, true);
+        iterator.next();
+    }
+
+    @Test
+    public void testIteratorForPreOrderTraversalRecursively() {
+        addNodesInTreeForTesting();
+        Iterator<Integer> iterator = binarySearchTree.iterator(TreeTraversalOrder.PRE_ORDER, true);
+        int[] preOrderResultArray = getPreOrderResultArray();
+        int index = 0;
+        while (iterator.hasNext()) {
+            assertEquals(preOrderResultArray[index++], (int) iterator.next());
+        }
+    }
+
+    @Test
+    public void testIteratorForPreOrderTraversalIteratively() {
+        addNodesInTreeForTesting();
+        Iterator<Integer> iterator = binarySearchTree.iterator(TreeTraversalOrder.PRE_ORDER, false);
+        int[] preOrderResultArray = getPreOrderResultArray();
+        int index = 0;
+        while (iterator.hasNext()) {
+            assertEquals(preOrderResultArray[index++], (int) iterator.next());
+        }
+    }
+
+    @Test
+    public void testIteratorForInOrderTraversalRecursively() {
+        addNodesInTreeForTesting();
+        Iterator<Integer> iterator = binarySearchTree.iterator(TreeTraversalOrder.IN_ORDER, true);
+        int[] inOrderResultArray = getInOrderResultArray();
+        int index = 0;
+        while (iterator.hasNext()) {
+            assertEquals(inOrderResultArray[index++], (int) iterator.next());
+        }
+    }
+
+    @Test
+    public void testIteratorForInOrderTraversalIteratively() {
+        addNodesInTreeForTesting();
+        Iterator<Integer> iterator = binarySearchTree.iterator(TreeTraversalOrder.IN_ORDER, false);
+        int[] inOrderResultArray = getInOrderResultArray();
+        int index = 0;
+        while (iterator.hasNext()) {
+            assertEquals(inOrderResultArray[index++], (int) iterator.next());
+        }
+    }
+
+    @Test
+    public void testIteratorForPostOrderTraversalRecursively() {
+        addNodesInTreeForTesting();
+        Iterator<Integer> iterator = binarySearchTree.iterator(TreeTraversalOrder.POST_ORDER, true);
+        int[] postOrderResultArray = getPostOrderResultArray();
+        int index = 0;
+        while (iterator.hasNext()) {
+            assertEquals(postOrderResultArray[index++], (int) iterator.next());
+        }
+    }
+
+    @Test
+    public void testIteratorForPostOrderTraversalIteratively() {
+        addNodesInTreeForTesting();
+        Iterator<Integer> iterator = binarySearchTree.iterator(TreeTraversalOrder.POST_ORDER, false);
+        int[] postOrderResultArray = getPostOrderResultArray();
+        int index = 0;
+        while (iterator.hasNext()) {
+            assertEquals(postOrderResultArray[index++], (int) iterator.next());
+        }
+    }
+
+    @Test
+    public void testIteratorForLevelOrderTraversalRecursively() {
+        addNodesInTreeForTesting();
+        Iterator<Integer> iterator = binarySearchTree.iterator(TreeTraversalOrder.LEVEL_ORDER, true);
+        int[] levelOrderResultArray = getLevelOrderResultArray();
+        int index = 0;
+        while (iterator.hasNext()) {
+            assertEquals(levelOrderResultArray[index++], (int) iterator.next());
+        }
+    }
+
+    @Test
+    public void testIteratorForLevelOrderTraversalIteratively() {
+        addNodesInTreeForTesting();
+        Iterator<Integer> iterator = binarySearchTree.iterator(TreeTraversalOrder.LEVEL_ORDER, false);
+        int[] levelOrderResultArray = getLevelOrderResultArray();
+        int index = 0;
+        while (iterator.hasNext()) {
+            assertEquals(levelOrderResultArray[index++], (int) iterator.next());
+        }
+    }
 
     @After
     public void tearDown() {
       binarySearchTree = null;
+    }
+
+    private void addNodesInTreeForTesting() {
+        // Tree should look like:
+        //          16      --- level 0
+        //        /   \
+        //      8      18   --- level 1
+        //     / \     / \
+        //    5  9   17  22 --- level 2
+        //   /
+        //  2               --- level 3
+        // level 0
+        binarySearchTree.add(16);
+        // level 1
+        binarySearchTree.add(8);
+        binarySearchTree.add(18);
+        // level 2
+        binarySearchTree.add(5);
+        binarySearchTree.add(9);
+        binarySearchTree.add(17);
+        binarySearchTree.add(22);
+        // level 3
+        binarySearchTree.add(2);
+    }
+
+    private static int[] getPreOrderResultArray() {
+        return new int[]{16, 8, 5, 2, 9, 18, 17, 22};
+    }
+
+    private static int[] getInOrderResultArray() {
+        return new int[]{2, 5, 8, 9, 16, 17, 18, 22};
+    }
+
+    private static int[] getPostOrderResultArray() {
+        return new int[]{2, 5, 9, 8, 17, 22, 18, 16};
+    }
+
+    private static int[] getLevelOrderResultArray() {
+        return new int[]{16, 8, 18, 5, 9, 17, 22, 2};
     }
 }
