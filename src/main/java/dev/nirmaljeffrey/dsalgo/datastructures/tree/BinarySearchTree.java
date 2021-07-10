@@ -8,6 +8,7 @@ import dev.nirmaljeffrey.dsalgo.common.BinaryTreeNode;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 public class BinarySearchTree<T extends Comparable<T>> {
 
@@ -200,11 +201,17 @@ public class BinarySearchTree<T extends Comparable<T>> {
 
         @Override
         public boolean hasNext() {
+            if (list.isEmpty()) {
+                throw new NoSuchElementException();
+            }
             return index >= 0 && index < list.size();
         }
 
         @Override
         public T next() {
+            if (list.isEmpty()) {
+                throw new NoSuchElementException();
+            }
             return list.get(index++);
         }
     }
