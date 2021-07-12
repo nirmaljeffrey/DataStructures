@@ -1,7 +1,8 @@
 package dev.nirmaljeffrey.dsalgo.algorithms.sorting;
 
-public class InsertionSort {
-    public static  void sort(int[] array) {
+public class InsertionSort implements Sorter {
+    @Override
+    public void sort(int[] array) {
         for (int i = 1; i < array.length; i++) {
             int value = array[i];
             int holeIndex = i;
