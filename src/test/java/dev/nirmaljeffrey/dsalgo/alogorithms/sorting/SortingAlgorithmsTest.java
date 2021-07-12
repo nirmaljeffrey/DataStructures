@@ -1,9 +1,6 @@
 package dev.nirmaljeffrey.dsalgo.alogorithms.sorting;
 
-import dev.nirmaljeffrey.dsalgo.algorithms.sorting.BubbleSort;
-import dev.nirmaljeffrey.dsalgo.algorithms.sorting.InsertionSort;
-import dev.nirmaljeffrey.dsalgo.algorithms.sorting.SelectionSort;
-import dev.nirmaljeffrey.dsalgo.algorithms.sorting.Sorter;
+import dev.nirmaljeffrey.dsalgo.algorithms.sorting.*;
 import dev.nirmaljeffrey.dsalgo.utils.TestingUtils;
 import org.junit.After;
 import org.junit.Assert;
@@ -22,6 +19,7 @@ public class SortingAlgorithmsTest {
         sorters.add(new SelectionSort());
         sorters.add(new BubbleSort());
         sorters.add(new InsertionSort());
+        sorters.add(new MergeSort());
     }
 
     @Test
