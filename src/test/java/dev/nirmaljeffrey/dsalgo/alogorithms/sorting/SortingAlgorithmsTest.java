@@ -1,7 +1,7 @@
 package dev.nirmaljeffrey.dsalgo.alogorithms.sorting;
 
 import dev.nirmaljeffrey.dsalgo.algorithms.sorting.*;
-import dev.nirmaljeffrey.dsalgo.utils.TestingUtils;
+import dev.nirmaljeffrey.dsalgo.common.TestingUtils;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -20,6 +20,8 @@ public class SortingAlgorithmsTest {
         sorters.add(new BubbleSort());
         sorters.add(new InsertionSort());
         sorters.add(new MergeSort());
+        sorters.add(new QuickSort());
+        sorters.add(new RandomizedQuickSort());
     }
 
     @Test

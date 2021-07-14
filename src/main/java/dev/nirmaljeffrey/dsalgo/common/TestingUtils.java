@@ -1,4 +1,4 @@
-package dev.nirmaljeffrey.dsalgo.utils;
+package dev.nirmaljeffrey.dsalgo.common;
 
 public class TestingUtils {
 
