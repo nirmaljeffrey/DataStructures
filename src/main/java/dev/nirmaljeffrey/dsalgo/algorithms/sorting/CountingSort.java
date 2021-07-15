@@ -2,6 +2,11 @@ package dev.nirmaljeffrey.dsalgo.algorithms.sorting;
 
 import dev.nirmaljeffrey.dsalgo.common.TestingUtils;
 
+/**
+ *    Negative Integers and Positive Integers are supported in CountingSort
+ *    Its a stable sorting algorithm
+ *    This algorithm can be used on numbers only
+ */
 public class CountingSort implements Sorter {
     @Override
     public void sort(int[] array) {

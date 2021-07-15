@@ -23,6 +23,7 @@ public class SortingAlgorithmsTest {
         sorters.add(new QuickSort());
         sorters.add(new RandomizedQuickSort());
         sorters.add(new CountingSort());
+        sorters.add(new RadixSort());
     }
 
     @Test
@@ -44,11 +45,14 @@ public class SortingAlgorithmsTest {
     public void verifySortingAlgorithms_smallNegativeIntegersOnly() {
         for(int size = 0; size < 1000; size++) {
             for (Sorter sorter: sorters) {
-                int[] array = TestingUtils.randomIntegerArray(size, -50, 51);
-                int[] arrayCopy = array.clone();
-                Arrays.sort(arrayCopy);
-                sorter.sort(array);
-                Assert.assertArrayEquals(arrayCopy, array);
+                // Negative integers are not supported in RadixSort
+                if (!(sorter instanceof RadixSort)) {
+                    int[] array = TestingUtils.randomIntegerArray(size, -50, 51);
+                    int[] arrayCopy = array.clone();
+                    Arrays.sort(arrayCopy);
+                    sorter.sort(array);
+                    Assert.assertArrayEquals(arrayCopy, array);
+                }
             }
         }
     }
