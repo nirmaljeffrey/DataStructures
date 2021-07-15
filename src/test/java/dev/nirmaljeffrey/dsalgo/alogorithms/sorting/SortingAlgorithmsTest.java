@@ -22,6 +22,7 @@ public class SortingAlgorithmsTest {
         sorters.add(new MergeSort());
         sorters.add(new QuickSort());
         sorters.add(new RandomizedQuickSort());
+        sorters.add(new CountingSort());
     }
 
     @Test
