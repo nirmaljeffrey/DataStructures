@@ -1,4 +1,4 @@
-package dev.nirmaljeffrey.dsalgo.datastructures.tree;
+package dev.nirmaljeffrey.dsalgo.common;
 
 public enum TreeTraversalOrder {
     PRE_ORDER,

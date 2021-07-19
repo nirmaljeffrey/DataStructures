@@ -5,25 +5,28 @@ import dev.nirmaljeffrey.dsalgo.algorithms.treetraversals.LevelOrderTraversal;
 import dev.nirmaljeffrey.dsalgo.algorithms.treetraversals.PostOrderTraversal;
 import dev.nirmaljeffrey.dsalgo.algorithms.treetraversals.PreOrderTraversal;
 import dev.nirmaljeffrey.dsalgo.common.BinaryTreeNode;
+import dev.nirmaljeffrey.dsalgo.common.TreeTraversalOrder;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class BinarySearchTree<T extends Comparable<T>> {
+public class BinarySearchTree<T extends Comparable<T>> implements Tree<T>{
 
     private int nodeCount = 0;
     private BinaryTreeNode<T> rootNode;
 
-
+    @Override
     public boolean isEmpty() {
         return nodeCount == 0;
     }
 
+    @Override
     public int size() {
         return nodeCount;
     }
 
+    @Override
     public boolean add(T element) {
      if(contains(element)) {
          return false;
@@ -49,6 +52,7 @@ public class BinarySearchTree<T extends Comparable<T>> {
         return root;
     }
 
+    @Override
     public boolean remove(T element) {
         if (contains(element)) {
             rootNode = remove(rootNode, element);
@@ -102,6 +106,7 @@ public class BinarySearchTree<T extends Comparable<T>> {
         return trav;
     }
 
+    @Override
     public boolean contains(T element) {
      return contains(rootNode, element);
     }
@@ -120,6 +125,7 @@ public class BinarySearchTree<T extends Comparable<T>> {
         }
     }
 
+    @Override
     public int height() {
       return height(rootNode);
     }
