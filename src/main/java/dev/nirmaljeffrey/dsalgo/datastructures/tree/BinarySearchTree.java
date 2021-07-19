@@ -28,7 +28,7 @@ public class BinarySearchTree<T extends Comparable<T>> implements Tree<T>{
 
     @Override
     public boolean add(T element) {
-     if(contains(element)) {
+     if(contains(element) || element == null) {
          return false;
      } else {
         rootNode = addNode(rootNode, element);
@@ -54,6 +54,9 @@ public class BinarySearchTree<T extends Comparable<T>> implements Tree<T>{
 
     @Override
     public boolean remove(T element) {
+        if (element == null) {
+            return false;
+        }
         if (contains(element)) {
             rootNode = remove(rootNode, element);
             nodeCount--;
@@ -100,7 +103,7 @@ public class BinarySearchTree<T extends Comparable<T>> implements Tree<T>{
 
     private BinaryTreeNode<T> digLeft(BinaryTreeNode<T> node) {
         BinaryTreeNode<T> trav = node;
-        while (trav != null) {
+        while (trav.left != null) {
             trav = trav.left;
         }
         return trav;
