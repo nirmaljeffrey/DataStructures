@@ -1,31 +1,31 @@
 package dev.nirmaljeffrey.dsalgo.algorithms.treetraversals;
 
-import dev.nirmaljeffrey.dsalgo.common.BinaryTreeNode;
+import dev.nirmaljeffrey.dsalgo.common.TreePrinter;
 
 import java.util.ArrayList;
 import java.util.Stack;
 
 public class PreOrderTraversal {
-    public static <T> void recursiveTraversal(ArrayList<T> arrayList, BinaryTreeNode<T> rootNode) {
+    public static <T extends Comparable<T>> void recursiveTraversal(ArrayList<T> arrayList, TreePrinter.PrintableNode<T> rootNode) {
         if (rootNode == null){
             return;
         }
-        arrayList.add(rootNode.data);
-        recursiveTraversal(arrayList, rootNode.left);
-        recursiveTraversal(arrayList,rootNode.right);
+        arrayList.add(rootNode.getData());
+        recursiveTraversal(arrayList, rootNode.getLeft());
+        recursiveTraversal(arrayList,rootNode.getRight());
     }
 
-    public static <T> void iterativeTraversal(ArrayList<T> arrayList, BinaryTreeNode<T> rootNode) {
-        Stack<BinaryTreeNode<T>> stack = new Stack<>();
-        BinaryTreeNode<T> currentNode = rootNode;
+    public static <T extends Comparable<T>> void iterativeTraversal(ArrayList<T> arrayList, TreePrinter.PrintableNode<T> rootNode) {
+        Stack<TreePrinter.PrintableNode<T>> stack = new Stack<>();
+        TreePrinter.PrintableNode<T> currentNode = rootNode;
         while (!stack.isEmpty() || currentNode != null) {
             if (currentNode != null) {
                 stack.push(currentNode);
-                arrayList.add(currentNode.data);
-                currentNode = currentNode.left;
+                arrayList.add(currentNode.getData());
+                currentNode = currentNode.getLeft();
             } else {
                 currentNode = stack.pop();
-                currentNode = currentNode.right;
+                currentNode = currentNode.getRight();
             }
         }
     }

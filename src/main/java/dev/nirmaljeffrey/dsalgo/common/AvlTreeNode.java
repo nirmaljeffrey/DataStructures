@@ -1,27 +1,32 @@
 package dev.nirmaljeffrey.dsalgo.common;
 
-public class AvlTreeNode<T> implements TreePrinter.PrintableNode {
+public class AvlTreeNode<T extends Comparable<T>> implements TreePrinter.PrintableNode<T> {
     public int balanceFactor;
     public int height;
-    public T value;
+    public T data;
     public AvlTreeNode<T> left, right;
 
-    public AvlTreeNode(T value) {
-        this.value = value;
+    public AvlTreeNode(T data) {
+        this.data = data;
     }
 
     @Override
-    public TreePrinter.PrintableNode getLeft() {
+    public TreePrinter.PrintableNode<T> getLeft() {
         return left;
     }
 
     @Override
-    public TreePrinter.PrintableNode getRight() {
+    public TreePrinter.PrintableNode<T> getRight() {
         return right;
     }
 
     @Override
+    public T getData() {
+        return data;
+    }
+
+    @Override
     public String getText() {
-        return value.toString();
+        return data.toString();
     }
 }

@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class BinarySearchTree<T extends Comparable<T>> implements Tree<T>{
+public class BinarySearchTree<T extends Comparable<T>> implements Tree<T> {
 
     private int nodeCount = 0;
     private BinaryTreeNode<T> rootNode;
@@ -39,7 +39,7 @@ public class BinarySearchTree<T extends Comparable<T>> implements Tree<T>{
 
     private BinaryTreeNode<T> addNode(BinaryTreeNode<T> root, T element) {
         if (root == null) {
-            root = new BinaryTreeNode<>(element, null, null);
+            root = new BinaryTreeNode<>(element);
         } else {
             int comparatorValue = element.compareTo(root.data);
             if (comparatorValue < 0) {
@@ -150,7 +150,7 @@ public class BinarySearchTree<T extends Comparable<T>> implements Tree<T>{
 
 
 
-    private static class BinarySearchTreeIterator<T> implements Iterator<T> {
+    private static class BinarySearchTreeIterator<T extends Comparable<T>> implements Iterator<T> {
         private final ArrayList<T> list;
         private final BinaryTreeNode<T> rootNode;
         private int index = 0;

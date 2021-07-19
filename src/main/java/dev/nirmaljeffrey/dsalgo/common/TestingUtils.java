@@ -42,4 +42,22 @@ public class TestingUtils {
         }
         return minValue;
     }
+
+
+
+    public static int[] getPreOrderResultArray() {
+        return new int[]{16, 8, 5, 2, 9, 18, 17, 22};
+    }
+
+    public static int[] getInOrderResultArray() {
+        return new int[]{2, 5, 8, 9, 16, 17, 18, 22};
+    }
+
+    public static int[] getPostOrderResultArray() {
+        return new int[]{2, 5, 9, 8, 17, 22, 18, 16};
+    }
+
+    public static int[] getLevelOrderResultArray() {
+        return new int[]{16, 8, 18, 5, 9, 17, 22, 2};
+    }
 }

@@ -8,25 +8,26 @@ import java.util.List;
 public class TreePrinter {
 
   /** Node that can be printed */
-  public interface PrintableNode {
+  public interface PrintableNode<T extends Comparable<T>> {
 
     // Get left child
-    PrintableNode getLeft();
+    PrintableNode<T> getLeft();
 
     // Get right child
-    PrintableNode getRight();
+    PrintableNode<T> getRight();
 
-    // Get text to be printed
+    T getData();
+
     String getText();
   }
 
   // Print a binary tree.
-  public static String getTreeDisplay(PrintableNode root) {
+  public static <T extends Comparable<T>> String getTreeDisplay(PrintableNode<T> root) {
 
     StringBuilder sb = new StringBuilder();
-    List<List<String>> lines = new ArrayList<List<String>>();
-    List<PrintableNode> level = new ArrayList<PrintableNode>();
-    List<PrintableNode> next = new ArrayList<PrintableNode>();
+    List<List<String>> lines = new ArrayList<>();
+    List<PrintableNode<T>> level = new ArrayList<>();
+    List<PrintableNode<T>> next = new ArrayList<>();
 
     level.add(root);
     int nn = 1;
@@ -35,7 +36,7 @@ public class TreePrinter {
     while (nn != 0) {
       nn = 0;
       List<String> line = new ArrayList<String>();
-      for (PrintableNode n : level) {
+      for (PrintableNode<T> n : level) {
         if (n == null) {
           line.add(null);
           next.add(null);
@@ -57,7 +58,7 @@ public class TreePrinter {
 
       lines.add(line);
 
-      List<PrintableNode> tmp = level;
+      List<PrintableNode<T>> tmp = level;
       level = next;
       next = tmp;
       next.clear();
