@@ -24,9 +24,15 @@ public class DynamicArray<T> implements Iterable<T> {
     }
 
     public T get(int index){
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException();
+        }
         return array[index];
     }
     public void set(int index, T element) {
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException();
+        }
        array[index] = element;
     }
     public void clear() {
