@@ -35,7 +35,7 @@ public class TreePrinter {
 
     while (nn != 0) {
       nn = 0;
-      List<String> line = new ArrayList<String>();
+      List<String> line = new ArrayList<>();
       for (PrintableNode<T> n : level) {
         if (n == null) {
           line.add(null);

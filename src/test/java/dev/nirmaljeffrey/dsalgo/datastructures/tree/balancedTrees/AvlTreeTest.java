@@ -173,6 +173,34 @@ public class AvlTreeTest {
         assertEquals(1, avlTree.root.left.data.intValue());
     }
 
+    @Test
+    public void addNodesInIncreasingOrderAndValidateBalanceFactorValues() {
+        avlTree.add(2);
+        avlTree.add(5);
+        avlTree.add(8);
+        avlTree.add(9);
+        avlTree.add(16);
+        avlTree.add(17);
+        avlTree.add(18);
+        avlTree.add(22);
+        System.out.println(avlTree.toString());
+        assertTrue(avlTree.validateBalanceFactorValues(avlTree.root));
+    }
+
+    @Test
+    public void addNodesInIncreasingOrderAndValidateBstInvariant() {
+        avlTree.add(2);
+        avlTree.add(5);
+        avlTree.add(8);
+        avlTree.add(9);
+        avlTree.add(16);
+        avlTree.add(17);
+        avlTree.add(18);
+        avlTree.add(22);
+        System.out.println(avlTree.toString());
+       assertTrue(TestingUtils.validateBinarySearchTreeInvariant(avlTree.root));
+    }
+
     @Test(expected = NoSuchElementException.class)
     public void testIteratorHasNextOnEmptyAvlTree() {
         Iterator<Integer> iterator = avlTree.iterator(TreeTraversalOrder.IN_ORDER, true);

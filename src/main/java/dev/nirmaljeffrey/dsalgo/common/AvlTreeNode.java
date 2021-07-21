@@ -27,6 +27,6 @@ public class AvlTreeNode<T extends Comparable<T>> implements TreePrinter.Printab
 
     @Override
     public String getText() {
-        return data.toString();
+        return String.valueOf(data);
     }
 }

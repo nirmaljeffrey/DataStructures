@@ -126,6 +126,40 @@ private BinarySearchTree<Integer> binarySearchTree;
         assertEquals(0, binarySearchTree.size());
     }
 
+    @Test
+    public void addNodesInIncreasingOrderAndPrintTree() {
+        binarySearchTree.add(2);
+        binarySearchTree.add(5);
+        binarySearchTree.add(8);
+        binarySearchTree.add(9);
+        binarySearchTree.add(16);
+        binarySearchTree.add(17);
+        binarySearchTree.add(18);
+        binarySearchTree.add(22);
+        System.out.println(binarySearchTree.toString());
+    }
+
+    @Test
+    public void addNodesInIncreasingOrderAndValidateBstInvariant() {
+        binarySearchTree.add(2);
+        binarySearchTree.add(5);
+        binarySearchTree.add(8);
+        binarySearchTree.add(9);
+        binarySearchTree.add(16);
+        binarySearchTree.add(17);
+        binarySearchTree.add(18);
+        binarySearchTree.add(22);
+        System.out.println(binarySearchTree.toString());
+        assertTrue(TestingUtils.validateBinarySearchTreeInvariant(binarySearchTree.rootNode));
+    }
+
+    @Test
+    public void addNodesInRandomAndValidateBstInvariant() {
+        addNodesInTreeForTesting();
+        System.out.println(binarySearchTree.toString());
+        assertTrue(TestingUtils.validateBinarySearchTreeInvariant(binarySearchTree.rootNode));
+    }
+
     @Test(expected = NoSuchElementException.class)
     public void testIteratorHasNextOnEmptyBinarySearchTree() {
         Iterator<Integer> iterator = binarySearchTree.iterator(TreeTraversalOrder.IN_ORDER, true);

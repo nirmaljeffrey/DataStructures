@@ -5,6 +5,7 @@ import dev.nirmaljeffrey.dsalgo.algorithms.treetraversals.LevelOrderTraversal;
 import dev.nirmaljeffrey.dsalgo.algorithms.treetraversals.PostOrderTraversal;
 import dev.nirmaljeffrey.dsalgo.algorithms.treetraversals.PreOrderTraversal;
 import dev.nirmaljeffrey.dsalgo.common.BinaryTreeNode;
+import dev.nirmaljeffrey.dsalgo.common.TreePrinter;
 import dev.nirmaljeffrey.dsalgo.common.TreeTraversalOrder;
 
 import java.util.ArrayList;
@@ -14,7 +15,7 @@ import java.util.NoSuchElementException;
 public class BinarySearchTree<T extends Comparable<T>> implements Tree<T> {
 
     private int nodeCount = 0;
-    private BinaryTreeNode<T> rootNode;
+    public BinaryTreeNode<T> rootNode;
 
     @Override
     public boolean isEmpty() {
@@ -223,6 +224,11 @@ public class BinarySearchTree<T extends Comparable<T>> implements Tree<T> {
             }
             return list.get(index++);
         }
+    }
+
+    @Override
+    public String toString() {
+        return TreePrinter.getTreeDisplay(rootNode);
     }
 
 }

@@ -26,6 +26,6 @@ public class BinaryTreeNode<T extends Comparable<T>> implements TreePrinter.Prin
 
     @Override
     public String getText() {
-        return data.toString();
+        return String.valueOf(data);
     }
 }

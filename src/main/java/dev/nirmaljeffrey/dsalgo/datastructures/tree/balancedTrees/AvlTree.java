@@ -5,6 +5,7 @@ import dev.nirmaljeffrey.dsalgo.algorithms.treetraversals.LevelOrderTraversal;
 import dev.nirmaljeffrey.dsalgo.algorithms.treetraversals.PostOrderTraversal;
 import dev.nirmaljeffrey.dsalgo.algorithms.treetraversals.PreOrderTraversal;
 import dev.nirmaljeffrey.dsalgo.common.AvlTreeNode;
+import dev.nirmaljeffrey.dsalgo.common.TreePrinter;
 import dev.nirmaljeffrey.dsalgo.common.TreeTraversalOrder;
 import dev.nirmaljeffrey.dsalgo.datastructures.tree.Tree;
 
@@ -294,5 +295,20 @@ public class AvlTree<T extends Comparable<T>> implements Tree<T> {
             }
             return list.get(index++);
         }
+    }
+
+    @Override
+    public String toString() {
+        return TreePrinter.getTreeDisplay(root);
+    }
+    // use only in testing
+    public boolean validateBalanceFactorValues(AvlTreeNode<T> node) {
+        if (node == null) {
+            return true;
+        }
+        if (node.balanceFactor > 1 || node.balanceFactor < -1) {
+            return false;
+        }
+        return validateBalanceFactorValues(node.left) && validateBalanceFactorValues(node.right);
     }
 }

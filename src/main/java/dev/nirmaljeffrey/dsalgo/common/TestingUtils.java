@@ -60,4 +60,18 @@ public class TestingUtils {
     public static int[] getLevelOrderResultArray() {
         return new int[]{16, 8, 18, 5, 9, 17, 22, 2};
     }
+
+    // use only in testing and for integer dataType only
+    public static boolean validateBinarySearchTreeInvariant(TreePrinter.PrintableNode<Integer> node) {
+        return validateBinarySearchTreeInvariant(node, Integer.MIN_VALUE, Integer.MAX_VALUE);
+    }
+    // use only in testing and for integer dataType only
+    private static boolean validateBinarySearchTreeInvariant(TreePrinter.PrintableNode<Integer> node, int min, int max) {
+        if (node == null) {
+            return true;
+        }
+        return node.getData() > min && node.getData() < max
+                && validateBinarySearchTreeInvariant(node.getLeft(), min, node.getData())
+                && validateBinarySearchTreeInvariant(node.getRight(), node.getData(), max);
+    }
 }
