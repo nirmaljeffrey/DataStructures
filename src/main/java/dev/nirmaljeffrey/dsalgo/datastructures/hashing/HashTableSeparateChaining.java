@@ -25,10 +25,12 @@ public class HashTableSeparateChaining<K, V> implements HashTable<K, V> {
 
     public HashTableSeparateChaining(int capacity, double loadFactor) {
         if (capacity < 1) {
-            throw new IllegalArgumentException("Illegal Capacity");
+            throw new IllegalArgumentException("Illegal Capacity: " + capacity);
         }
-        if (loadFactor <= 0 || Double.isNaN(loadFactor) || Double.isFinite(loadFactor)) {
-            throw new IllegalArgumentException("Illegal load factor");
+        if (loadFactor <= 0 ||
+                Double.isNaN(loadFactor) ||
+                Double.isInfinite(loadFactor)) {
+            throw new IllegalArgumentException("Illegal load factor: "+ loadFactor);
         }
         this.maxLoadFactor = loadFactor;
         this.capacity = Math.max(capacity, DEFAULT_CAPACITY);
@@ -59,7 +61,7 @@ public class HashTableSeparateChaining<K, V> implements HashTable<K, V> {
         }
         HashEntry<K,V> entry = new HashEntry<>(key, value);
         int bucketIndex = normalizeIndex(entry.hash);
-        return bucketInsertEntry(bucketIndex, entry);
+        return bucketUpsertEntry(bucketIndex, entry);
     }
 
     @Override
@@ -159,7 +161,7 @@ public class HashTableSeparateChaining<K, V> implements HashTable<K, V> {
         return entryToBeRemoved.value;
     }
     // Returns old value before updating
-    private V bucketInsertEntry(int bucketIndex, HashEntry<K, V> entry) {
+    private V bucketUpsertEntry(int bucketIndex, HashEntry<K, V> entry) {
         LinkedList<HashEntry<K,V>> bucket = hashtable[bucketIndex];
         if (bucket == null) {
             bucket = hashtable[bucketIndex] = new LinkedList<>();
@@ -205,14 +207,28 @@ public class HashTableSeparateChaining<K, V> implements HashTable<K, V> {
     @Override
     public Iterator<K> iterator() {
         return new Iterator<>() {
+            int bucketIndex = 0;
+            Iterator<HashEntry<K, V>> bucketIterator = hashtable[0] == null? null : hashtable[0].iterator();
             @Override
             public boolean hasNext() {
-                return false;
+                if (bucketIterator == null || !bucketIterator.hasNext()) {
+                    while(++bucketIndex < capacity) {
+                       LinkedList<HashEntry<K,V>>  bucket =  hashtable[bucketIndex];
+                       if (bucket != null) {
+                           Iterator<HashEntry<K,V>> iterator = bucket.iterator();
+                           if (iterator.hasNext()) {
+                               bucketIterator = iterator;
+                               break;
+                           }
+                       }
+                    }
+                }
+                return bucketIndex < capacity;
             }
 
             @Override
             public K next() {
-                return null;
+                return bucketIterator.next().key;
             }
         };
     }
