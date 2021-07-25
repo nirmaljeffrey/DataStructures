@@ -126,6 +126,54 @@ public class TrieTest {
         }
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void testTrieDeleteNull() {
+        for (Trie trie : tries) {
+            trie.delete(null);
+        }
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testTrieDeleteEmptyString() {
+        for (Trie trie : tries) {
+            trie.delete("");
+        }
+    }
+
+    @Test
+    public void testTrieDeleteOnEmptyTrie() {
+        for (Trie trie : tries) {
+            assertTrue(trie.isEmpty());
+            assertFalse(trie.delete("hello"));
+        }
+    }
+
+
+    @Test
+    public void testTrieDelete() {
+        for (Trie trie : tries) {
+            assertTrue(trie.isEmpty());
+            trie.insert("arrow");
+            assertFalse(trie.isEmpty());
+            assertTrue(trie.delete("arrow"));
+            assertTrue(trie.isEmpty());
+
+            trie.insert("arrow");
+            trie.insert("are");
+            trie.insert("armenia");
+            trie.insert("ball");
+            trie.insert("bandalero");
+            trie.insert("basket");
+            trie.insert("basketball");
+            assertFalse(trie.isEmpty());
+
+            assertTrue(trie.delete("bandelero"));
+            assertTrue(trie.delete("basketball"));
+            assertFalse(trie.delete("hello"));
+
+        }
+    }
+
 
     @After
     public void tearDown() {
