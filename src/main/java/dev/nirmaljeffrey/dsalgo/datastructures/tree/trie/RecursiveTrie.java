@@ -5,7 +5,7 @@ import dev.nirmaljeffrey.dsalgo.common.TrieNode;
 
 
 public class RecursiveTrie implements Trie {
-    private TrieNode rootNode;
+    private final TrieNode rootNode;
 
     public RecursiveTrie() {
         rootNode = new TrieNode();

@@ -3,7 +3,7 @@ package dev.nirmaljeffrey.dsalgo.datastructures.tree.trie;
 import dev.nirmaljeffrey.dsalgo.common.TrieNode;
 
 public class IterativeTrie implements Trie {
-    private TrieNode rootNode;
+    private final TrieNode rootNode;
 
     public IterativeTrie() {
         this.rootNode = new TrieNode();
